@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="landing">
+    <div class="landing-left">
+      <div class="landing-image"></div>
+    </div>
+
+    <div class="landing-right">
+      <div class="code-card">
+        <h1>Enter our Anniversary</h1>
+        <p class="code-subtitle">Type the 6‑digit code to continue.</p>
+
+        <form id="code-form">
+          <div class="code-inputs">
+            <input type="text" class="code-input-square" maxlength="1" readonly>
+            <input type="text" class="code-input-square" maxlength="1" readonly>
+            <input type="text" class="code-input-square" maxlength="1" readonly>
+            <input type="text" class="code-input-square" maxlength="1" readonly>
+            <input type="text" class="code-input-square" maxlength="1" readonly>
+            <input type="text" class="code-input-square" maxlength="1" readonly>
+          </div>
+          <div class="keypad"></div>
+          <button type="submit">Continue</button>
+          <p id="code-message" class="code-message"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const CORRECT_CODE = "010326";
+    const codeInputs = document.querySelectorAll(".code-input-square");
+    const form = document.getElementById("code-form");
+    const message = document.getElementById("code-message");
+    const keypad = document.querySelector(".keypad");
+
+    let currentInputIndex = 0;
+
+    function updateCodeInput(value) {
+      if (value === '⌫') {
+        if (currentInputIndex > 0) {
+          currentInputIndex--;
+          codeInputs[currentInputIndex].value = "";
+        } else if (currentInputIndex === 0 && codeInputs[0].value !== "") {
+          codeInputs[0].value = "";
+        }
+      } else if (value === 'Clear') {
+        codeInputs.forEach(input => input.value = "");
+        currentInputIndex = 0;
+      } else if (currentInputIndex < codeInputs.length) {
+        codeInputs[currentInputIndex].value = value;
+        currentInputIndex++;
+      }
+      message.textContent = ""; // Clear message on input
+    }
+
+    // Create a virtual numeric keypad
+    const keys = [
+      '1', '2', '3',
+      '4', '5', '6',
+      '7', '8', '9',
+      'Clear', '0', '⌫' // Backspace symbol
+    ];
+
+    keys.forEach(key => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.textContent = key;
+      button.addEventListener("click", () => {
+        updateCodeInput(key);
+      });
+      keypad.appendChild(button);
+    });
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const enteredCode = Array.from(codeInputs).map(input => input.value).join("");
+
+      if (enteredCode === CORRECT_CODE) {
+        message.textContent = "Code accepted. Welcome in. ❤️";
+        message.classList.remove("error");
+        message.classList.add("success");
+        window.location.href = "dashboard.html";
+      } else {
+        message.textContent = "That code doesn’t look right. Try again.";
+        message.classList.remove("success");
+        message.classList.add("error");
+        // Optionally clear inputs or highlight them
+        codeInputs.forEach(input => input.value = "");
+        currentInputIndex = 0;
+        codeInputs[0].focus();
+      }
+    });
+  </script>
+
+</body>
+</html>

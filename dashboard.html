@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Our Special Place</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar-custom">
+  <ul class="navbar-nav-custom">
+    <li class="nav-item-custom">
+      <a class="nav-link-custom" href="essay.html">Letters</a>
+    </li>
+    <li class="nav-item-custom">
+      <a class="nav-link-custom active" href="dashboard.html">Home</a>
+    </li>
+  </ul>
+</nav>
+    <div class="dashboard-container">
+    <h1 class="greeting">Happy 1st Monthsary, baby.</h1>
+
+    <div class="heart-button-container">
+      <div id="envelope" class="envelope" role="button" tabindex="0" aria-label="Open the letter">
+        <img id="coverImage" src="images/cover.png" alt="Open letter" class="cover-image">
+      </div>
+
+      <div id="loveLetter" class="love-letter love-letter-popup" aria-live="polite">
+        <h2>To my Carl Lorreine,</h2>
+        <p>When I was just about ready to give up on love, the universe had its own quiet way of proving me wrong.</p>
+
+        <p>I still remember swiping on Bumble without really knowing what I was looking for. I came across your profile and, half-jokingly, thought to myself that I probably couldn’t handle your attitude—purely based on your pictures. I said “oh well” and swiped right anyway. And I’m so glad I did.</p>
+
+        <p>At first, I truly believed I wasn’t capable of getting attached anymore. I told myself I was just talking casually, nothing serious. But somewhere along the way, we fell into a routine, and I started to look for you without even realizing it. I denied it for a while. I had my walls up, convinced this would be another short-lived thing—one of those connections that ends after a couple of weeks when you find a reason to walk away.</p>
+
+        <p>But we didn’t.</p>
+
+        <p>When I got hospitalized, what hurt most wasn’t being admitted. It was knowing I wouldn’t get to have our usual sleep calls or movie nights. That’s when it hit me—how much you had already become part of my life. I was developing real feelings, even if I was still scared to admit it back then.</p>
+
+        <p>You have this way of getting through to me so naturally. With you, I feel safe. Talking to you feels easy—except, of course, when I have to speak in Tagalog. When you first told me you were coming to see me, I panicked. Not because I was hiding anything, but because I was scared that meeting in person might change everything. What if we noticed something we didn’t like?</p>
+
+        <p>But it didn’t change things. It only made me love you more.</p>
+
+        <p>As cheesy as it sounds, this is the first time I’ve felt truly secure in a relationship. I stopped overthinking. During those seven days, I felt at home, and I couldn’t get enough of spending time with you. Our situation isn’t always easy, but I’m grateful to have someone I can miss—someone who makes distance feel meaningful.</p>
+
+        <p>This Valentine’s Day, even if I can’t be there physically, I’d love to go back to how we started. Just us, watching a movie together.</p>
+
+        <p>So let me ask you, sincerely:</p>
+
+        <div class="valentine-question">
+          <p class="italic-question">Will you be my Valentine?</p>
+          <div class="valentine-buttons">
+            <button id="yesButton" class="cute-button yes-button">Yes</button>
+            <button id="noButton" class="cute-button no-button">No</button>
+          </div>
+        </div>
+
+        <div id="snoopyGifContainer" class="snoopy-gif-container" style="display: none;">
+          <div class="tenor-gif-embed" data-postid="16872596" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/snoopy-love-you-hearts-gif-16872596">Snoopy Love You GIF</a>from <a href="https://tenor.com/search/snoopy-gifs">Snoopy GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const coverImage = document.getElementById("coverImage");
+    const envelope = document.getElementById("envelope");
+    const loveLetter = document.getElementById("loveLetter");
+
+    function openLetter() {
+      envelope.classList.add("open");
+      // Let the envelope animate while the letter appears.
+      setTimeout(() => {
+        loveLetter.classList.add("show");
+      }, 350);
+      setTimeout(() => {
+        envelope.classList.add("gone");
+      }, 1200);
+    }
+
+    const noButton = document.getElementById("noButton");
+    noButton.addEventListener("mouseover", () => {
+      noButton.textContent = "Yes";
+    });
+    noButton.addEventListener("mouseout", () => {
+      noButton.textContent = "No";
+    });
+
+    const yesButton = document.getElementById("yesButton");
+    const valentineQuestion = document.querySelector(".valentine-question");
+    const snoopyGifContainer = document.getElementById("snoopyGifContainer");
+
+    function handleYesResponse() {
+      valentineQuestion.style.display = "none";
+      snoopyGifContainer.style.display = "block";
+    }
+
+    yesButton.addEventListener("click", handleYesResponse);
+    noButton.addEventListener("click", handleYesResponse);
+
+    envelope.addEventListener("click", openLetter);
+    envelope.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openLetter();
+      }
+    });
+  </script>
+
+</body>
+</html>

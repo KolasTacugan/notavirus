@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Essays</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="navbar-custom">
+    <ul class="navbar-nav-custom">
+      <li class="nav-item-custom">
+        <a class="nav-link-custom active" href="essay.html">Letters</a>
+      </li>
+      <li class="nav-item-custom">
+        <a class="nav-link-custom" href="dashboard.html">Home</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="page-container">
+    <div class="love-letter show">
+      <h2>100 Letters</h2>
+      <p>Tap the card to read the full letter.</p>
+
+      <div id="essayCard" class="essay-card" role="button" tabindex="0" aria-label="Open essay">
+        <h3 class="essay-card-title">First Monthsary</h3>
+        <p class="essay-card-preview">
+          When I was just about ready to give up.....(tap to open)
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div id="essayModal" class="essay-modal" aria-hidden="true">
+    <div class="essay-modal-content" role="dialog" aria-modal="true" aria-label="Full essay">
+      <div class="essay-modal-header">
+        <h3>First Monthsary</h3>
+        <button id="essayClose" class="essay-close" type="button">Close</button>
+      </div>
+      <div class="essay-body">
+        <p>To my Carl Lorreine,</p>
+        <p>When I was just about ready to give up on love, the universe had its own quiet way of proving me wrong.</p>
+
+        <p>I still remember swiping on Bumble without really knowing what I was looking for. I came across your profile and, half-jokingly, thought to myself that I probably couldn’t handle your attitude—purely based on your pictures. I said “oh well” and swiped right anyway. And I’m so glad I did.</p>
+
+        <p>At first, I truly believed I wasn’t capable of getting attached anymore. I told myself I was just talking casually, nothing serious. But somewhere along the way, we fell into a routine, and I started to look for you without even realizing it. I denied it for a while. I had my walls up, convinced this would be another short-lived thing—one of those connections that ends after a couple of weeks when you find a reason to walk away.</p>
+
+        <p>But we didn’t.</p>
+
+        <p>When I got hospitalized, what hurt most wasn’t being admitted. It was knowing I wouldn’t get to have our usual sleep calls or movie nights. That’s when it hit me—how much you had already become part of my life. I was developing real feelings, even if I was still scared to admit it back then.</p>
+
+        <p>You have this way of getting through to me so naturally. With you, I feel safe. Talking to you feels easy—except, of course, when I have to speak in Tagalog. When you first told me you were coming to see me, I panicked. Not because I was hiding anything, but because I was scared that meeting in person might change everything. What if we noticed something we didn’t like?</p>
+
+        <p>But it didn’t change things. It only made me love you more.</p>
+
+        <p>As cheesy as it sounds, this is the first time I’ve felt truly secure in a relationship. I stopped overthinking. During those seven days, I felt at home, and I couldn’t get enough of spending time with you. Our situation isn’t always easy, but I’m grateful to have someone I can miss—someone who makes distance feel meaningful.</p>
+
+        <p>This Valentine’s Day, even if I can’t be there physically, I’d love to go back to how we started. Just us, watching a movie together.</p>
+
+        <p>So let me ask you, sincerely:</p>
+
+        <p class="italic-question">Will you be my Valentine?</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const essayCard = document.getElementById("essayCard");
+    const essayModal = document.getElementById("essayModal");
+    const essayClose = document.getElementById("essayClose");
+
+    function openEssay() {
+      essayModal.classList.add("show");
+      essayModal.setAttribute("aria-hidden", "false");
+      essayClose.focus();
+    }
+
+    function closeEssay() {
+      essayModal.classList.remove("show");
+      essayModal.setAttribute("aria-hidden", "true");
+      essayCard.focus();
+    }
+
+    essayCard.addEventListener("click", openEssay);
+    essayCard.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openEssay();
+      }
+    });
+
+    essayClose.addEventListener("click", closeEssay);
+    essayModal.addEventListener("click", (e) => {
+      if (e.target === essayModal) closeEssay();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && essayModal.classList.contains("show")) closeEssay();
+    });
+  </script>
+
+</body>
+</html>
