@@ -8,78 +8,57 @@
 <body>
 
 <nav class="navbar-custom">
+  <div class="navbar-brand-custom">
+    <a href="dashboard.html" class="brand-link">C</a>
+  </div>
   <ul class="navbar-nav-custom">
+    <li class="nav-item-custom">
+      <a class="nav-link-custom active" href="dashboard.html">Home</a>
+    </li>
     <li class="nav-item-custom">
       <a class="nav-link-custom" href="essay.html">Letters</a>
     </li>
     <li class="nav-item-custom">
-      <a class="nav-link-custom active" href="dashboard.html">Home</a>
+      <a id="aboutLink" class="nav-link-custom" href="#about">About Us</a>
+    </li>
+    <li class="nav-item-custom">
+      <a id="calendarLink" class="nav-link-custom" href="#calendar">Calendar</a>
     </li>
   </ul>
 </nav>
-    <div class="dashboard-container">
-    <h1 class="greeting">Happy 1st Monthsary, baby.</h1>
+    <div class="dashboard-container valentine-dashboard">
+    <h1 class="greeting">Happy Hearts Day, my love.</h1>
 
     <div class="heart-button-container">
       <div id="envelope" class="envelope" role="button" tabindex="0" aria-label="Open the letter">
-        <img id="coverImage" src="images/cover.png" alt="Open letter" class="cover-image">
+        <div class="envelope-body">
+          <div class="envelope-flap"></div>
+          <div class="envelope-heart"></div>
+        </div>
       </div>
 
       <div id="loveLetter" class="love-letter love-letter-popup" aria-live="polite">
         <h2>To my Carl Lorreine,</h2>
-        <p>
-          For the first time in my life, I’m actually scared of dying—because it would mean leaving you.
-        </p>
+        <p>Valentine’s Day is supposed to be about romantic love, flowers, dates, and all that. But for me, it’s simpler than that. It’s just a reminder that I get to love you — and that you’re mine.</p>
 
-        <p>
-          You once asked me when, or how, I knew I had feelings for you. This was it. I never really feared death before, not because I was troubled or depressed, but because I never felt like I had anything to hold on to. Until you.
-        </p>
+        <p>We may not be together physically today, but nothing about us feels less special. Every call, every “goodnight,” every random story we tell each other still feels just as meaningful. Distance has never made me doubt us. If anything, it makes me appreciate you more.</p>
 
-        <p>
-          September 18, 2025. I was swiping with no intention of finding love, or even someone to talk to. The app was supposed to be deleted the next day. But like the butterfly theory, small things really do turn into something big. Honestly, I thought this would last two weeks—maybe a month at most. But somehow, you always found your way through me. I tried to sabotage us for weeks, but it was too good to break.
-        </p>
+        <p>For so long, I never really believed the words “I love you” when they were said to me. But when you say it, I do. I believe you. I feel it. You love me in a way that feels natural — like it’s the easiest thing in the world for you. Like loving me is just breathing. And I don’t think I’ll ever stop being grateful for that.</p>
 
-        <p>
-          And I think that’s what I love most about us—everything just came naturally. The daily chitchat, the movies, the sleep calls. It slowly became routine. And no matter how long I tried to deny it, I couldn’t anymore.
-        </p>
+        <p>Thank you for choosing me. Thank you for loving me endlessly. I hope I make you feel just as loved, just as safe, just as sure.</p>
 
-        <p>
-          November 12, 2025. The day I got admitted. When I was told I had to stay in the hospital, my first thought wasn’t fear—it was losing our routine. I may not have loved you yet, but that was when I realized my feelings had grown more than I ever planned. I was scared, but at the same time, I felt safe.
-        </p>
+        <p>Nothing in this world could make me unlove you. You’ll never be in competition with anyone, because I don’t compare you — I choose you. Not just today because it’s Valentine’s Day. I choose you every single day. And I will keep choosing you for the rest of our lives.</p>
 
-        <p>
-          As the days passed and the doctors still couldn’t properly diagnose me, I wasn’t getting any better. And for the first time in my life, I wasn’t ready to give up. The thought of not getting to experience life with you felt unbearable. As cliché as it sounds, you were exactly what I needed.
-        </p>
+        <p>To more Valentine’s Days. To more calls. To more memories.</p>
 
-        <p>
-          Everything with you feels easy—except when I have to speak in Tagalog. During the days we spent together, I never felt more at home. And for someone who was so against long-distance relationships for years, I’m glad I have one with you. That’s how I knew how secure I felt in this relationship.
-        </p>
-
-        <p>
-          This Valentine’s Day, I may not be there with you physically. But I want to go back to how we started—how we’ve always been. Just us, on Discord, watching a movie.
-        </p>
-
-        <p>
-          So allow me to ask my girlfriend, the love of my life, my wife:
-        </p>
-
-        <div class="valentine-question">
-          <p class="italic-question">Will you be my Valentine?</p>
-          <div class="valentine-buttons">
-            <button id="yesButton" class="cute-button yes-button">Yes</button>
-            <button id="noButton" class="cute-button no-button">No</button>
-          </div>
-        </div>
-
-        <div id="snoopyGifContainer" class="snoopy-gif-container" style="display: none;">
-          <div class="tenor-gif-embed" data-postid="16872596" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/snoopy-love-you-hearts-gif-16872596">Snoopy Love You GIF</a>from <a href="https://tenor.com/search/snoopy-gifs">Snoopy GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
-        </div>
+        <p>Happy Hearts Day, my forever Valentine.<br>— Kolas</p>
       </div>
     </div>
   </div>
 
+  <div id="underConstructionToast" class="under-construction-toast">Under construction hehe</div>
+
   <script>
-    const coverImage = document.getElementById("coverImage");
     const envelope = document.getElementById("envelope");
     const loveLetter = document.getElementById("loveLetter");
 
@@ -94,26 +73,6 @@
       }, 1200);
     }
 
-    const noButton = document.getElementById("noButton");
-    noButton.addEventListener("mouseover", () => {
-      noButton.textContent = "Yes";
-    });
-    noButton.addEventListener("mouseout", () => {
-      noButton.textContent = "No";
-    });
-
-    const yesButton = document.getElementById("yesButton");
-    const valentineQuestion = document.querySelector(".valentine-question");
-    const snoopyGifContainer = document.getElementById("snoopyGifContainer");
-
-    function handleYesResponse() {
-      valentineQuestion.style.display = "none";
-      snoopyGifContainer.style.display = "block";
-    }
-
-    yesButton.addEventListener("click", handleYesResponse);
-    noButton.addEventListener("click", handleYesResponse);
-
     envelope.addEventListener("click", openLetter);
     envelope.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
@@ -121,6 +80,33 @@
         openLetter();
       }
     });
+
+    const toast = document.getElementById("underConstructionToast");
+    const aboutLink = document.getElementById("aboutLink");
+    const calendarLink = document.getElementById("calendarLink");
+    let toastTimeout;
+
+    function showUnderConstruction() {
+      toast.classList.add("show");
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2200);
+    }
+
+    if (aboutLink) {
+      aboutLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        showUnderConstruction();
+      });
+    }
+
+    if (calendarLink) {
+      calendarLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        showUnderConstruction();
+      });
+    }
   </script>
 
 </body>

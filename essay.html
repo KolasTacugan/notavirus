@@ -9,35 +9,77 @@
 <body>
 
   <nav class="navbar-custom">
+    <div class="navbar-brand-custom">
+      <a href="dashboard.html" class="brand-link">C</a>
+    </div>
     <ul class="navbar-nav-custom">
+      <li class="nav-item-custom">
+        <a class="nav-link-custom" href="dashboard.html">Home</a>
+      </li>
       <li class="nav-item-custom">
         <a class="nav-link-custom active" href="essay.html">Letters</a>
       </li>
       <li class="nav-item-custom">
-        <a class="nav-link-custom" href="dashboard.html">Home</a>
+        <a id="aboutLink" class="nav-link-custom" href="#about">About Us</a>
+      </li>
+      <li class="nav-item-custom">
+        <a id="calendarLink" class="nav-link-custom" href="#calendar">Calendar</a>
       </li>
     </ul>
   </nav>
 
   <div class="page-container">
     <div class="love-letter show">
-        <h2>1/100 Letters</h2>
-      <p>Tap the card to read the full letter.</p>
+      <h2>2/100 Letters</h2>
+      <p>Tap a letter to open it.</p>
 
-      <div id="essayCard" class="essay-card" role="button" tabindex="0" aria-label="Open essay">
-        <h3 class="essay-card-title">To my Carl Lorreine,</h3>
-        <p class="essay-card-preview">
-          For the first time in my life, I’m actually scared of dying—because...(tap to open)
-        </p>
+      <div class="essay-card-list">
+        <div id="essayCard1" class="essay-card" role="button" tabindex="0" aria-label="Open Valentine letter">
+          <h3 class="essay-card-title">Valentine’s Day Letter</h3>
+          <p class="essay-card-preview">
+            Valentine’s Day is supposed to be about romantic love, flowers, dates, and all that...(tap to open)
+          </p>
+        </div>
+
+        <div id="essayCard2" class="essay-card" role="button" tabindex="0" aria-label="Open How I Knew letter">
+          <h3 class="essay-card-title">How I Knew I Loved You</h3>
+          <p class="essay-card-preview">
+            For the first time in my life, I’m actually scared of dying—because...(tap to open)
+          </p>
+        </div>
       </div>
     </div>
   </div>
 
-  <div id="essayModal" class="essay-modal" aria-hidden="true">
-    <div class="essay-modal-content" role="dialog" aria-modal="true" aria-label="Full essay">
+  <div id="essayModal1" class="essay-modal" aria-hidden="true">
+    <div class="essay-modal-content" role="dialog" aria-modal="true" aria-label="Valentine’s Day Letter">
       <div class="essay-modal-header">
-        <h3>To my Carl Lorreine,</h3>
-        <button id="essayClose" class="essay-close" type="button">Close</button>
+        <h3>Valentine’s Day Letter</h3>
+        <button class="essay-close" data-close="1" type="button">Close</button>
+      </div>
+      <div class="essay-body">
+        <p>Valentine’s Day is supposed to be about romantic love, flowers, dates, and all that. But for me, it’s simpler than that. It’s just a reminder that I get to love you — and that you’re mine.</p>
+
+        <p>We may not be together physically today, but nothing about us feels less special. Every call, every “goodnight,” every random story we tell each other still feels just as meaningful. Distance has never made me doubt us. If anything, it makes me appreciate you more.</p>
+
+        <p>For so long, I never really believed the words “I love you” when they were said to me. But when you say it, I do. I believe you. I feel it. You love me in a way that feels natural — like it’s the easiest thing in the world for you. Like loving me is just breathing. And I don’t think I’ll ever stop being grateful for that.</p>
+
+        <p>Thank you for choosing me. Thank you for loving me endlessly. I hope I make you feel just as loved, just as safe, just as sure.</p>
+
+        <p>Nothing in this world could make me unlove you. You’ll never be in competition with anyone, because I don’t compare you — I choose you. Not just today because it’s Valentine’s Day. I choose you every single day. And I will keep choosing you for the rest of our lives.</p>
+
+        <p>To more Valentine’s Days. To more calls. To more memories.</p>
+
+        <p>Happy Hearts Day, my forever Valentine.<br>— Kolas</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="essayModal2" class="essay-modal" aria-hidden="true">
+    <div class="essay-modal-content" role="dialog" aria-modal="true" aria-label="How I Knew I Loved You">
+      <div class="essay-modal-header">
+        <h3>How I Knew I Loved You</h3>
+        <button class="essay-close" data-close="2" type="button">Close</button>
       </div>
       <div class="essay-body">
         <p>To my Carl Lorreine,</p>
@@ -82,38 +124,94 @@
     </div>
   </div>
 
+  <div id="underConstructionToast" class="under-construction-toast">Under construction hehe</div>
+
   <script>
-    const essayCard = document.getElementById("essayCard");
-    const essayModal = document.getElementById("essayModal");
-    const essayClose = document.getElementById("essayClose");
+    const essayCard1 = document.getElementById("essayCard1");
+    const essayCard2 = document.getElementById("essayCard2");
+    const essayModal1 = document.getElementById("essayModal1");
+    const essayModal2 = document.getElementById("essayModal2");
+    const closeButtons = document.querySelectorAll(".essay-close");
 
-    function openEssay() {
-      essayModal.classList.add("show");
-      essayModal.setAttribute("aria-hidden", "false");
-      essayClose.focus();
+    function openEssay(modal) {
+      modal.classList.add("show");
+      modal.setAttribute("aria-hidden", "false");
+      const closeBtn = modal.querySelector(".essay-close");
+      if (closeBtn) closeBtn.focus();
     }
 
-    function closeEssay() {
-      essayModal.classList.remove("show");
-      essayModal.setAttribute("aria-hidden", "true");
-      essayCard.focus();
+    function closeEssay(modal) {
+      modal.classList.remove("show");
+      modal.setAttribute("aria-hidden", "true");
     }
 
-    essayCard.addEventListener("click", openEssay);
-    essayCard.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        openEssay();
+    if (essayCard1) {
+      essayCard1.addEventListener("click", () => openEssay(essayModal1));
+      essayCard1.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openEssay(essayModal1);
+        }
+      });
+    }
+
+    if (essayCard2) {
+      essayCard2.addEventListener("click", () => openEssay(essayModal2));
+      essayCard2.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openEssay(essayModal2);
+        }
+      });
+    }
+
+    closeButtons.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const id = e.currentTarget.getAttribute("data-close");
+        const modal = id === "1" ? essayModal1 : essayModal2;
+        closeEssay(modal);
+      });
+    });
+
+    [essayModal1, essayModal2].forEach((modal) => {
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) closeEssay(modal);
+      });
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        if (essayModal1.classList.contains("show")) closeEssay(essayModal1);
+        if (essayModal2.classList.contains("show")) closeEssay(essayModal2);
       }
     });
 
-    essayClose.addEventListener("click", closeEssay);
-    essayModal.addEventListener("click", (e) => {
-      if (e.target === essayModal) closeEssay();
-    });
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && essayModal.classList.contains("show")) closeEssay();
-    });
+    const toast = document.getElementById("underConstructionToast");
+    const aboutLink = document.getElementById("aboutLink");
+    const calendarLink = document.getElementById("calendarLink");
+    let toastTimeout;
+
+    function showUnderConstruction() {
+      toast.classList.add("show");
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2200);
+    }
+
+    if (aboutLink) {
+      aboutLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        showUnderConstruction();
+      });
+    }
+
+    if (calendarLink) {
+      calendarLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        showUnderConstruction();
+      });
+    }
   </script>
 
 </body>

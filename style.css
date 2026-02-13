@@ -227,12 +227,39 @@ button:active {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; /* keep content higher on the page */
   min-height: 100vh;
-  background: radial-gradient(circle at top right, #ffe6ee, #fbe9f4, #fdf7fc);
+  background: radial-gradient(circle at top right, #ffdde9, #fbe9f4, #fdf7fc);
   text-align: center;
-  padding-top: 80px; /* Adjust padding to account for fixed navbar */
-  padding-bottom: 20px;
+  padding-top: 90px; /* space below fixed navbar, keep content high */
+  padding-bottom: 10px;
+}
+
+.valentine-dashboard {
+  position: relative;
+  overflow: hidden;
+}
+
+.valentine-dashboard::before,
+.valentine-dashboard::after {
+  content: "";
+  position: absolute;
+  inset: -40px;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(255, 192, 203, 0.35) 0, transparent 50%),
+    radial-gradient(circle at 80% 10%, rgba(255, 182, 193, 0.35) 0, transparent 55%),
+    radial-gradient(circle at 20% 90%, rgba(255, 228, 225, 0.45) 0, transparent 55%);
+  opacity: 0.7;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.valentine-dashboard::after {
+  background-image:
+    radial-gradient(circle at 15% 30%, rgba(255, 192, 203, 0.55) 0, transparent 50%),
+    radial-gradient(circle at 75% 85%, rgba(255, 182, 193, 0.55) 0, transparent 55%);
+  mix-blend-mode: screen;
+  animation: floatingHearts 16s ease-in-out infinite alternate;
 }
 
 .navbar-custom {
@@ -250,8 +277,20 @@ button:active {
 }
 
 .navbar-brand-custom {
-  /* This class is no longer used, but keeping it here to avoid errors */
-  display: none;
+  display: flex;
+  align-items: center;
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: #d14777;
+}
+
+.brand-link {
+  text-decoration: none;
+  color: inherit;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ffe4ec, #ffd1e1);
+  box-shadow: 0 6px 14px rgba(236, 72, 153, 0.35);
 }
 
 .navbar-nav-custom {
@@ -312,7 +351,7 @@ button:active {
 
 .envelope {
   position: relative;
-  width: min(380px, 86vw);
+  width: min(420px, 88vw);
   height: 240px;
   margin-bottom: 28px;
   border-radius: 18px;
@@ -353,6 +392,51 @@ button:active {
   max-width: 210px;
   animation: heartBeat 1.4s infinite ease-in-out;
   filter: drop-shadow(0 10px 18px rgba(15, 23, 42, 0.20));
+}
+
+.envelope-body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #ffe4ec, #ffc4d6);
+  box-shadow:
+    0 18px 40px rgba(236, 72, 153, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.8);
+  overflow: hidden;
+}
+
+.envelope-heart {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  width: 42px;
+  height: 38px;
+  transform: translate(-50%, -50%);
+  background-color: #ff4b8b;
+  transform-origin: center;
+  animation: heartBeat 1.5s infinite ease-in-out;
+  display: none; /* hide red heart seal */
+}
+
+.envelope-heart::before,
+.envelope-heart::after {
+  content: "";
+  position: absolute;
+  width: 42px;
+  height: 38px;
+  background-color: #ff4b8b;
+  border-radius: 50%;
+}
+
+.envelope-heart::before {
+  top: -18px;
+  left: 0;
+}
+
+.envelope-heart::after {
+  top: -18px;
+  right: 0;
 }
 
 .envelope:focus-visible {
@@ -491,6 +575,21 @@ button:active {
   100% { transform: scale(1); }
 }
 
+@keyframes floatingHearts {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate3d(-12px, -10px, 0);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate3d(10px, -18px, 0);
+    opacity: 0.8;
+  }
+}
+
 .love-letter {
   background: rgba(255, 255, 255, 0.95);
   border-radius: 15px;
@@ -540,6 +639,13 @@ button:active {
   cursor: pointer;
   user-select: none;
   transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
+}
+
+.essay-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
 }
 
 .essay-card:hover {
@@ -615,4 +721,48 @@ button:active {
 .essay-body p {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.essay-body {
+  padding-right: 4px;
+}
+
+.letter-section {
+  margin-bottom: 26px;
+}
+
+.letter-title {
+  margin: 10px 0 8px;
+  color: #e11d48;
+  font-weight: 700;
+}
+
+.letter-divider {
+  margin: 10px 0 22px;
+  height: 1px;
+  background: linear-gradient(to right, rgba(244, 114, 182, 0), rgba(244, 114, 182, 0.7), rgba(244, 114, 182, 0));
+  opacity: 0.7;
+}
+
+.under-construction-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%) translateY(20px);
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(255, 240, 245, 0.96);
+  box-shadow: 0 10px 25px rgba(236, 72, 153, 0.35);
+  color: #d14777;
+  font-weight: 600;
+  font-size: 0.95rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease, transform 0.28s ease;
+  z-index: 2500;
+}
+
+.under-construction-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
