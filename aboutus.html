@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About Us • Nicole &amp; Carl</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar-custom">
+  <div class="navbar-brand-custom">
+    <a href="dashboard.html" class="brand-link">C</a>
+  </div>
+  <ul class="navbar-nav-custom">
+    <li class="nav-item-custom">
+      <a class="nav-link-custom" href="dashboard.html">Home</a>
+    </li>
+    <li class="nav-item-custom">
+      <a class="nav-link-custom" href="essay.html">Letters</a>
+    </li>
+    <li class="nav-item-custom">
+      <a id="aboutLink" class="nav-link-custom active" href="aboutus.html">About Us</a>
+    </li>
+    <li class="nav-item-custom">
+      <a id="calendarLink" class="nav-link-custom" href="#calendar">Calendar</a>
+    </li>
+  </ul>
+</nav>
+
+<main>
+  <section id="about" class="about-section">
+    <h2 class="about-heading">About Us</h2>
+
+    <div class="about-cards">
+      <article class="about-card">
+        <div class="about-card-inner">
+          <div class="about-photo">
+            <img src="images/Nicole.png" alt="Nicole smiling softly" class="about-img">
+          </div>
+          <div class="about-text">
+            <h3 class="about-name about-name-nicole">Nicole</h3>
+            <p>
+              Nicole was born on January 1, 2003. She can never decide which flower she loves more — lilies or tulips —
+              but one thing is certain: she absolutely adores navy blue. She is completely terrified of frogs and would
+              probably scream at the sight of one! But that fear is nothing compared to how much she loves The Hunger Games.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="about-card">
+        <div class="about-card-inner">
+          <div class="about-photo">
+            <img src="images/Carl.png" alt="Carl Lorreine looking adorable" class="about-img">
+          </div>
+          <div class="about-text">
+            <h3 class="about-name about-name-carl">Carl Lorreine</h3>
+            <p>
+              Carl Lorreine was born on July 17, 2003. You might be wondering why she has a boy’s name… well, her parents were
+              originally expecting a baby boy. Funny enough, she does have something in common with boys — she likes girls too.
+              Most of her accessories are probably purple, and she has a slight obsession with perfumes. She may have the most
+              “maldita” personality at times, but trust me, she can be the absolute sweetest.
+            </p>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="about-couple">
+      <div class="about-couple-photo-wrapper">
+        <img src="images/pic1.jpg" alt="Nicole and Carl together, clearly in love" class="about-couple-img">
+      </div>
+      <p class="about-couple-caption">
+        And this is Nicole and Carl. It’s pretty obvious that Carl has a huge crush on Nicole. They are truly made for each other.
+      </p>
+    </div>
+  </section>
+</main>
+
+<div id="underConstructionToast" class="under-construction-toast">Under construction hehe</div>
+
+<script>
+  const toast = document.getElementById("underConstructionToast");
+  const calendarLink = document.getElementById("calendarLink");
+  let toastTimeout;
+
+  function showUnderConstruction() {
+    toast.classList.add("show");
+    clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(() => {
+      toast.classList.remove("show");
+    }, 2200);
+  }
+
+  if (calendarLink) {
+    calendarLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      showUnderConstruction();
+    });
+  }
+</script>
+
+</body>
+</html>
+

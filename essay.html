@@ -20,7 +20,7 @@
         <a class="nav-link-custom active" href="essay.html">Letters</a>
       </li>
       <li class="nav-item-custom">
-        <a id="aboutLink" class="nav-link-custom" href="#about">About Us</a>
+        <a id="aboutLink" class="nav-link-custom" href="aboutus.html">About Us</a>
       </li>
       <li class="nav-item-custom">
         <a id="calendarLink" class="nav-link-custom" href="#calendar">Calendar</a>
@@ -30,10 +30,17 @@
 
   <div class="page-container">
     <div class="love-letter show">
-      <h2>2/100 Letters</h2>
+      <h2>3/100 Letters</h2>
       <p>Tap a letter to open it.</p>
 
       <div class="essay-card-list">
+        <div id="essayCard3" class="essay-card" role="button" tabindex="0" aria-label="Open 2nd Monthsary letter">
+          <h3 class="essay-card-title">Happy 2nd Monthsary</h3>
+          <p class="essay-card-preview">
+            Happy 2nd Monthsary, baby. Sorry this is a little late — but like I said, late is better than absent...(tap to open)
+          </p>
+        </div>
+
         <div id="essayCard1" class="essay-card" role="button" tabindex="0" aria-label="Open Valentine letter">
           <h3 class="essay-card-title">Valentine’s Day Letter</h3>
           <p class="essay-card-preview">
@@ -47,6 +54,27 @@
             For the first time in my life, I’m actually scared of dying—because...(tap to open)
           </p>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="essayModal3" class="essay-modal" aria-hidden="true">
+    <div class="essay-modal-content" role="dialog" aria-modal="true" aria-label="Happy 2nd Monthsary">
+      <div class="essay-modal-header">
+        <h3>Happy 2nd Monthsary</h3>
+        <button class="essay-close" data-close="3" type="button">Close</button>
+      </div>
+      <div class="essay-body">
+        <p>Happy 2nd Monthsary, baby.</p>
+        
+        <p>Sorry this is a little late — but like I said, late is better than absent. And honestly, I didn’t want to write something just to be on time without actually putting my heart into it. You deserve something real, not rushed.</p>
+
+        <p>You’ve been so understanding of me. Truly. I know things have been tough lately — or maybe I’ve been tough. I haven’t always been kind, and I haven’t always felt like myself. Thank you for staying. For choosing us even on the days I feel lost, anxious, or hard to love. That means more to me than you know.</p>
+
+        <p>You’ve been the best partner, and sometimes I genuinely don’t know what I did to deserve you. I may not always express it well or show it the way you need, but please know this — I’m always excited to see you. It’s always you I look forward to. Even when I’m busy. Even when I seem distant or unreachable. It’s still you.</p>
+
+        <p>You will always be the love of my life. I love you.</p>
+        <p>— Kolas</p>
       </div>
     </div>
   </div>
@@ -129,8 +157,10 @@
   <script>
     const essayCard1 = document.getElementById("essayCard1");
     const essayCard2 = document.getElementById("essayCard2");
+    const essayCard3 = document.getElementById("essayCard3");
     const essayModal1 = document.getElementById("essayModal1");
     const essayModal2 = document.getElementById("essayModal2");
+    const essayModal3 = document.getElementById("essayModal3");
     const closeButtons = document.querySelectorAll(".essay-close");
 
     function openEssay(modal) {
@@ -165,15 +195,28 @@
       });
     }
 
+    if (essayCard3) {
+      essayCard3.addEventListener("click", () => openEssay(essayModal3));
+      essayCard3.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openEssay(essayModal3);
+        }
+      });
+    }
+
     closeButtons.forEach((btn) => {
       btn.addEventListener("click", (e) => {
         const id = e.currentTarget.getAttribute("data-close");
-        const modal = id === "1" ? essayModal1 : essayModal2;
-        closeEssay(modal);
+        let modal;
+        if (id === "1") modal = essayModal1;
+        else if (id === "2") modal = essayModal2;
+        else if (id === "3") modal = essayModal3;
+        if (modal) closeEssay(modal);
       });
     });
 
-    [essayModal1, essayModal2].forEach((modal) => {
+    [essayModal1, essayModal2, essayModal3].forEach((modal) => {
       modal.addEventListener("click", (e) => {
         if (e.target === modal) closeEssay(modal);
       });
@@ -183,6 +226,7 @@
       if (e.key === "Escape") {
         if (essayModal1.classList.contains("show")) closeEssay(essayModal1);
         if (essayModal2.classList.contains("show")) closeEssay(essayModal2);
+        if (essayModal3.classList.contains("show")) closeEssay(essayModal3);
       }
     });
 
@@ -197,13 +241,6 @@
       toastTimeout = setTimeout(() => {
         toast.classList.remove("show");
       }, 2200);
-    }
-
-    if (aboutLink) {
-      aboutLink.addEventListener("click", (e) => {
-        e.preventDefault();
-        showUnderConstruction();
-      });
     }
 
     if (calendarLink) {
