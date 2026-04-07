@@ -603,6 +603,7 @@ button:active {
   transform: translateY(20px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
   visibility: hidden;
+  box-sizing: border-box;
 }
 
 .love-letter.show {
@@ -637,6 +638,8 @@ button:active {
   cursor: pointer;
   user-select: none;
   transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .essay-card-list {
@@ -644,6 +647,13 @@ button:active {
   flex-direction: column;
   gap: 12px;
   margin-top: 10px;
+  width: 100%;
+  max-width: 100%;
+}
+
+.love-letter.show {
+  width: min(720px, 92vw);
+  box-sizing: border-box;
 }
 
 .essay-card:hover {
@@ -686,6 +696,7 @@ button:active {
   border-radius: 18px;
   box-shadow: 0 22px 70px rgba(15, 23, 42, 0.35);
   padding: 22px 22px 16px;
+  -webkit-overflow-scrolling: touch;
 }
 
 .essay-modal-header {
@@ -723,6 +734,78 @@ button:active {
 
 .essay-body {
   padding-right: 4px;
+}
+
+.essay-body p {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 520px) {
+  .navbar-custom {
+    padding: 10px 12px;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .navbar-nav-custom {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 6px;
+  }
+
+  .nav-item-custom {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .nav-link-custom {
+    font-size: 0.98em;
+    padding: 7px 10px;
+  }
+
+  .page-container {
+    padding-top: 110px; /* extra room when navbar wraps */
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .love-letter {
+    padding: 18px;
+    font-size: 1.02em;
+  }
+
+  .love-letter h2 {
+    font-size: 1.55em;
+    margin-bottom: 12px;
+  }
+
+  .essay-card {
+    padding: 14px 14px;
+  }
+
+  .essay-modal {
+    padding: 12px;
+  }
+
+  .essay-modal-content {
+    padding: 16px 14px 12px;
+    border-radius: 16px;
+    max-height: 86vh;
+  }
+
+  .essay-modal-header {
+    align-items: flex-start;
+  }
+
+  .essay-modal-header h3 {
+    font-size: 1.1rem;
+    line-height: 1.2;
+  }
+
+  .essay-close {
+    padding: 7px 10px;
+    font-size: 0.95rem;
+  }
 }
 
 .letter-section {
