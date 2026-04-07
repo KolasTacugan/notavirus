@@ -30,10 +30,17 @@
 
   <div class="page-container">
     <div class="love-letter show">
-      <h2>3/100 Letters</h2>
+      <h2>4/100 Letters</h2>
       <p>Tap a letter to open it.</p>
 
       <div class="essay-card-list">
+        <div id="essayCard4" class="essay-card" role="button" tabindex="0" aria-label="Open 3rd Monthsary letter">
+          <h3 class="essay-card-title">Happy 3rd Monthsary</h3>
+          <p class="essay-card-preview">
+            my baby, happy monthsary. first, i want to apologize if this letter is a bit late...(tap to open)
+          </p>
+        </div>
+
         <div id="essayCard3" class="essay-card" role="button" tabindex="0" aria-label="Open 2nd Monthsary letter">
           <h3 class="essay-card-title">Happy 2nd Monthsary</h3>
           <p class="essay-card-preview">
@@ -58,6 +65,34 @@
     </div>
   </div>
 
+  <div id="essayModal4" class="essay-modal" aria-hidden="true">
+    <div class="essay-modal-content" role="dialog" aria-modal="true" aria-label="Happy 3rd Monthsary">
+      <div class="essay-modal-header">
+        <h3>Happy 3rd Monthsary</h3>
+        <button class="essay-close" data-close="4" type="button">Close</button>
+      </div>
+      <div class="essay-body">
+        <p>my baby, happy monthsary.</p>
+
+        <p>first, i want to apologize if this letter is a bit late. i didn’t want to write something just because i had to. today, i finally had the energy and the right emotions to sit down and write this for you.</p>
+
+        <p>when i said i couldn’t love you the way i want to, most of what i meant was my pride. and i know how much that has caused some of our fights. as much as i say i’m content with our ldr situation, let’s be honest—it does get hard sometimes. there are moments where i know i could’ve handled things better if you were here.</p>
+
+        <p>during our off calls, i’ve felt a lot of guilt about how i talk to you or how i act. i keep thinking things would’ve been different if you were here. that’s why i always say babawi ako when andito ka na. but it hit me—you’re still not here, and this is our reality. i need to learn how to be better for you within the situation we have now.</p>
+
+        <p>for all the dates i can’t take you on yet, and all the ways i want to treat you, i realized that what matters more right now is how i show up for you, especially when we don’t agree. i’m sorry if you’ve had to deal with parts of me that are still healing.</p>
+
+        <p>i’m starting to accept that i am an emotional person, no matter how much my pride and ego try to deny it. and if i want to love you better, i have to face that.</p>
+
+        <p>thank you for being patient with me. even from a distance, you find ways to calm the parts of me that feel chaotic. i don’t even know how you do that without being here, without holding me—but you do.</p>
+
+        <p>i love you, baby. i love us. even if we’re miles apart, there’s no one else i’d rather go through this with. you’ve been an amazing partner.</p>
+
+        <p>happy monthsary.</p>
+      </div>
+    </div>
+  </div>
+
   <div id="essayModal3" class="essay-modal" aria-hidden="true">
     <div class="essay-modal-content" role="dialog" aria-modal="true" aria-label="Happy 2nd Monthsary">
       <div class="essay-modal-header">
@@ -66,7 +101,7 @@
       </div>
       <div class="essay-body">
         <p>Happy 2nd Monthsary, baby.</p>
-        
+
         <p>Sorry this is a little late — but like I said, late is better than absent. And honestly, I didn’t want to write something just to be on time without actually putting my heart into it. You deserve something real, not rushed.</p>
 
         <p>You’ve been so understanding of me. Truly. I know things have been tough lately — or maybe I’ve been tough. I haven’t always been kind, and I haven’t always felt like myself. Thank you for staying. For choosing us even on the days I feel lost, anxious, or hard to love. That means more to me than you know.</p>
@@ -158,9 +193,11 @@
     const essayCard1 = document.getElementById("essayCard1");
     const essayCard2 = document.getElementById("essayCard2");
     const essayCard3 = document.getElementById("essayCard3");
+    const essayCard4 = document.getElementById("essayCard4");
     const essayModal1 = document.getElementById("essayModal1");
     const essayModal2 = document.getElementById("essayModal2");
     const essayModal3 = document.getElementById("essayModal3");
+    const essayModal4 = document.getElementById("essayModal4");
     const closeButtons = document.querySelectorAll(".essay-close");
 
     function openEssay(modal) {
@@ -205,6 +242,16 @@
       });
     }
 
+    if (essayCard4) {
+      essayCard4.addEventListener("click", () => openEssay(essayModal4));
+      essayCard4.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openEssay(essayModal4);
+        }
+      });
+    }
+
     closeButtons.forEach((btn) => {
       btn.addEventListener("click", (e) => {
         const id = e.currentTarget.getAttribute("data-close");
@@ -212,11 +259,12 @@
         if (id === "1") modal = essayModal1;
         else if (id === "2") modal = essayModal2;
         else if (id === "3") modal = essayModal3;
+        else if (id === "4") modal = essayModal4;
         if (modal) closeEssay(modal);
       });
     });
 
-    [essayModal1, essayModal2, essayModal3].forEach((modal) => {
+    [essayModal1, essayModal2, essayModal3, essayModal4].forEach((modal) => {
       modal.addEventListener("click", (e) => {
         if (e.target === modal) closeEssay(modal);
       });
@@ -227,6 +275,7 @@
         if (essayModal1.classList.contains("show")) closeEssay(essayModal1);
         if (essayModal2.classList.contains("show")) closeEssay(essayModal2);
         if (essayModal3.classList.contains("show")) closeEssay(essayModal3);
+        if (essayModal4.classList.contains("show")) closeEssay(essayModal4);
       }
     });
 

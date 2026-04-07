@@ -87,7 +87,6 @@ form {
   outline: none;
   transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
   -webkit-text-security: disc;
-  text-security: disc;
   font-family: monospace; /* Use a monospace font for consistent character width */
 }
 
@@ -770,6 +769,7 @@ button:active {
 .about-section {
   padding: 100px 20px 60px;
   background: radial-gradient(circle at top right, #fff5f8, #fdf2ff, #fffdfb);
+  font-family: "Segoe Print", "Segoe Script", "Comic Sans MS", ui-rounded, system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 .about-heading {
@@ -791,7 +791,7 @@ button:active {
 }
 
 .about-card {
-  background: rgba(255, 255, 255, 0.98);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(255, 245, 252, 0.98));
   border-radius: 30px;
   box-shadow: 
     0 20px 40px rgba(255, 105, 180, 0.12),
@@ -840,8 +840,8 @@ button:active {
 .about-text p {
   margin: 8px 0 0;
   font-size: 1.05rem;
-  line-height: 1.7;
-  color: #5b4b62;
+  line-height: 1.75;
+  color: #5a3a58;
   font-weight: 500;
 }
 
@@ -903,8 +903,4 @@ button:active {
   }
 }
 
-@media (max-width: 900px) {
-  .about-cards {
-    /* grid-template-columns: 1fr; (redundant now with flex) */
-  }
-}
+/* (Removed empty @media rule: about cards already stack via flex) */
